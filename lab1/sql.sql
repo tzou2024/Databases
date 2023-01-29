@@ -1,9 +1,9 @@
 -- CREATE TABLE BRANCH(
 --     BranchNo TEXT primary key,
---     Street TEXT NOT NULL,
---     Area TEXT NOT NULL,
---     City TEXT NOT NULL,
---     TelNo TEXT NOT NULL
+--     Street TEXT,
+--     Area TEXT,
+--     City TEXT,
+--     TelNo TEXT
 -- );
 
 -- INSERT INTO BRANCH VALUES (
@@ -17,12 +17,12 @@
 
 -- CREATE TABLE STAFF(
 --     StaffNo TEXT PRIMARY KEY,
---     FName TEXT NOT NULL,
---     LName TEXT NOT NULL,
---     Address TEXT NOT NULL,
---     TelNo TEXT NOT NULL,
---     Job TEXT NOT NULL,
---     Gender TEXT NOT NULL,
+--     FName TEXT ,
+--     LName TEXT ,
+--     Address TEXT ,
+--     TelNo TEXT ,
+--     Job TEXT,
+--     Gender TEXT,
 --     Salary INT,
 --     BranchNo TEXT REFERENCES BRANCH(BranchNo)
 -- );
@@ -57,10 +57,10 @@
 
 -- CREATE TABLE PROPERTY (
 --     PropertyNo TEXT PRIMARY KEY,
---     Street TEXT NOT NULL,
---     Area TEXT NOT NULL,
---     City TEXT NOT NULL,
---     Type TEXT NOT NULL,
+--     Street TEXT,
+--     Area TEXT,
+--     City TEXT,
+--     Type TEXT,
 --     Rooms INT,
 --     Rent INT,
 --     OwnerNo TEXT REFERENCES OWNER(OwnerNo),
@@ -135,11 +135,16 @@ SELECT Fname, Lname, Address FROM STAFF WHERE Salary < 20000;
 -- 2. Find the name and address of male staff members earning less than 20000.
 SELECT Fname, Lname, Address FROM STAFF WHERE Gender='M' and Salary < 20000;
 -- 3. Find all information on female staff members who do not have a telephone number.
+SELECT * FROM STAFF WHERE Gender='F' and TelNo IS NULL;
 -- 4. Find the name and address of renters requesting an apartment for less than 500 (euros per month).
--- 5. Find the name and address of renters living in the Cork area (phone number starting 021) requesting
--- an apartment for less than 500.
--- 6. Find the property number and address of apartments in Cork having more than 3 rooms and costing
--- between 400 and 500.
--- 7. Find the property number, address and rent of apartments handled by either branch B3 or B7. Sort
--- the result by city and by area.
+SELECT * FROM RENTER WHERE MaxRent < 500;
+-- 5. Find the name and address of renters living in the Cork area (phone number starting 021) requesting an apartment for less than 500.
+SELECT Fname || ' ' || LName as Name, Address FROM RENTER WHERE TelNo LIKE '021%' AND MaxRent < 500;
+-- 6. Find the property number and address of apartments in Cork having more than 3 rooms and costing between 400 and 500.
+SELECT * FROM PROPERTY;
+
+SELECT PropertyNo, Street || ', ' || Area || ', ' || City AS Adress FROM PROPERTY WHERE Type = 'apartment' AND Rooms > 3 and Rent < 500 AND Rent > 400;
+-- 7. Find the property number, address and rent of apartments handled by either branch B3 or B7. Sort the result by city and by area.
+SELECT PropertyNo,Street || ', ' || Area || ', ' || City AS Adress, Rent FROM PROPERTY WHERE Type = 'apartment' AND (BranchNo = 'B3' OR BranchNo = 'B7') ORDER BY City, Area;
 -- 8. Find all information on property owner Carol Farrell.
+SELECT * FROM OWNER WHERE FName = 'Carol' AND LName = 'Farrell';
