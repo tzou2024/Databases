@@ -137,12 +137,10 @@ SELECT Fname, Lname, Address FROM STAFF WHERE Gender='M' and Salary < 20000;
 -- 3. Find all information on female staff members who do not have a telephone number.
 SELECT * FROM STAFF WHERE Gender='F' and TelNo IS NULL;
 -- 4. Find the name and address of renters requesting an apartment for less than 500 (euros per month).
-SELECT * FROM RENTER WHERE MaxRent < 500;
+SELECT Fname, LName, Address FROM RENTER WHERE MaxRent < 500 AND TypePreference = 'apartment';
 -- 5. Find the name and address of renters living in the Cork area (phone number starting 021) requesting an apartment for less than 500.
 SELECT Fname || ' ' || LName as Name, Address FROM RENTER WHERE TelNo LIKE '021%' AND MaxRent < 500;
 -- 6. Find the property number and address of apartments in Cork having more than 3 rooms and costing between 400 and 500.
-SELECT * FROM PROPERTY;
-
 SELECT PropertyNo, Street || ', ' || Area || ', ' || City AS Adress FROM PROPERTY WHERE Type = 'apartment' AND Rooms > 3 and Rent < 500 AND Rent > 400;
 -- 7. Find the property number, address and rent of apartments handled by either branch B3 or B7. Sort the result by city and by area.
 SELECT PropertyNo,Street || ', ' || Area || ', ' || City AS Adress, Rent FROM PROPERTY WHERE Type = 'apartment' AND (BranchNo = 'B3' OR BranchNo = 'B7') ORDER BY City, Area;
