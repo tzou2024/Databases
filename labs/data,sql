@@ -1,0 +1,16 @@
+-- INSERT INTO RENTER VALUES(
+--     'CR50',
+--     'Mickey',
+--     'Mouse',
+--     '9 Barrack St, Cork',
+--     '021-333-444',
+--     'apartment',
+--     500
+-- );
+
+-- INSERT INTO VIEWING VALUES(
+--     'CR50',
+--     'PA14',
+--     '10-10-2000',
+--     'Not Damp on Walls'
+-- );
