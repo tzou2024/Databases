@@ -14,3 +14,29 @@
 --     '10-10-2000',
 --     'Not Damp on Walls'
 -- );
+
+-- INSERT INTO RENTER VALUES (
+--     'CR46',
+--     'Mary',
+--     'McAleese',
+--     '1 Main St, Dublin',
+--     '01-222-333',
+--     'house',
+--     300
+
+-- );
+
+
+-- INSERT INTO PROPERTY VALUES (
+--     'PA15',
+--     'Old St',
+--     'Blackrock',
+--     'Cork',
+--     'apartment',
+--     4,
+--     450,
+--     'CO46',
+--     'SL33',
+--     'B2'
+-- );
+-- DELETE FROM PROPERTY WHERE OwnerNo = 'C046';
