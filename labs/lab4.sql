@@ -17,7 +17,7 @@ SELECT STAFF.FName, STAFF.LName FROM STAFF JOIN BRANCH ON Branch.BranchNo = STAF
 -- at same address).
 SELECT FName, LName, TelNo FROM RENTER GROUP BY Address HAVING COUNT(Address) > 1;
 -- -- 4. Find the telephone number of any renter who used the word “damp” when viewing property ’PA3’.
-SELECT RENTER.TelNo FROM RENTER JOIN VIEWING ON RENTER.RenterNo = VIEWING.RenterNo WHERE ' ' || VIEWING.Comment || ' ' COLLATE UTF8_GENERAL_CI LIKE '% damp %';
+SELECT RENTER.TelNo FROM RENTER JOIN VIEWING ON RENTER.RenterNo = VIEWING.RenterNo WHERE ' ' || VIEWING.Comment || ' ' COLLATE UTF8_GENERAL_CI LIKE '% damp %' AND VIEWING.PropertyNo = 'PA3';
 -- -- 5. Find the telephone number of any renter who used the word “damp” when viewing any property
 -- -- in Cork.
 SELECT RENTER.TelNo FROM RENTER JOIN VIEWING ON RENTER.RenterNo = VIEWING.RenterNo JOIN PROPERTY ON VIEWING.PropertyNo = PROPERTY.PropertyNo WHERE ' ' || VIEWING.Comment || ' ' COLLATE UTF8_GENERAL_CI LIKE '% damp %' AND PROPERTY.City = 'Cork';
